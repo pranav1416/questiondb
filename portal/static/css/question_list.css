@@ -1,0 +1,71 @@
+<style>
+
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 1100px;
+    position: center;
+    margin-left: 100px;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+.question_text {
+    text-align: left;   
+}
+.attributes_table {
+    text-align: middle;
+}
+#customers tr {background-color: #f2f2f2; }
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #182848;
+    color: white;
+    text-align: center;
+}
+.bbg
+{
+/*background: #4b6cb7; 
+background: -webkit-linear-gradient(to left, #4b6cb7 , #182848); 
+background: linear-gradient(to left, #4b6cb7 , #182848); */
+ 
+
+background: #E0EAFC; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #E0EAFC , #CFDEF3); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #E0EAFC , #CFDEF3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+       
+}
+.container1 
+{
+    position: middle;
+    margin-top: 25px;
+    margin-left: 50px;
+    margin-right: 50px;
+    height: 450px;
+    overflow: scroll;
+}
+
+.navbar_link {
+    font-size: 20px;
+}
+.navbar-brand {
+    font-size: 30px;
+    margin-left: 10px;
+}
+.footer1 {
+  height: 30px;
+ position:absolute;
+ bottom: 0;
+width: 100%;
+ margin-top: 40px;
+  background-color: #000000;
+  background: black; 
+}
+</style>

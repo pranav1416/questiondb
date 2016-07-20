@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	{% load staticfiles %}
+<title>Question</title>
+    <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="{% static "css/materialize.min.css" %}"  media="screen,projection"/>
+       
+
+
+        
+      <script type="text/javascript" src="{% static "js/materialize.min.js" %}"></script>
+      
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/css/materialize.min.css">
+<!-- Compiled and minified JavaScript -->
+
+
+
+<!--************************************ NAV BAR STARTS ****************************-->
+<style>    
+nav ul li a{
+  color: white;
+}    
+</style>
+ </head>
+
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper #009688 teal white-text">
+      <a href="#!" class="brand-logo">  NCC</a>
+      <ul class="right hide-on-med-and-down">
+        <li class="active"><a href="/leaderboard"><big>LEADERBOARD</big></a></li>
+        <li class="active"><a href="/questionlist"><big>QUESTIONS HUB</big></a></li>
+        <li class="active"><a href="/log_out">LOG OUT</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+</header>
+<!--###################################### NAV BAR ENDS ###########################-->
+<br>
+
+<!--************************************* STYLING STARTS **************************-->
+<style>
+/* Force scrollbars onto browser window */
+body {
+
+  
+margin-bottom: 0%;
+}
+
+/* Box styles */
+.myBox {
+border: none;
+padding: 5px;
+font: 24px/36px sans-serif;
+width: 650px;
+height: 600px;
+overflow: scroll;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+width: 50px;
+height: 50px;
+}
+
+::-webkit-scrollbar-track {
+border: 1px solid yellowgreen;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+background: yellowgreen;  
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #88ba1c;  
+}
+
+#editor { 
+   position: absolute;
+   top: 160px;
+   right: 10px;
+   bottom: 1px;
+   left: 655px;
+      }
+  #c
+{   position: absolute;
+  margin-left: 670px;
+  margin-top: -100px;
+}
+#r
+{   position: absolute;
+  margin-left: 785px;
+  margin-top: -100px;
+}
+#s
+{
+     position: absolute;
+   margin-left: 925px;
+  margin-top: -100px;
+}
+
+#l
+{
+  position: absolute;
+    margin-left: 660px;
+  margin-top: -690px; 
+}
+#up
+{
+  position: absolute;
+    margin-left: 20px;
+  margin-top: 5px;  
+}
+#sub
+{
+  position: absolute;
+    margin-left: 1035px;
+  margin-top: -10px;  
+}
+
+#deb
+{
+  position: absolute;
+    margin-left: 870px;
+  margin-top: -695px;  
+}
+#file
+{
+  position: absolute;
+    margin-left: 1080px;
+  margin-top:-620px;  
+}
+.ip{
+  
+    overflow: scroll;
+    resize:none;
+    
+
+}
+#ip2{
+
+  display: none;
+  resize:none;
+}
+
+#lan { 
+
+   position: absolute;
+   top: 70px;
+   margin-left: 680px;
+      }
+#x
+{
+  background-color: black;
+  height:25px;
+  width: 25px;
+  
+  margin-left: 50px;
+
+
+}
+#yx
+{
+  background-color: white;
+  height:25px;
+  width: 25px;
+  margin-left: 35px;
+  border-color: black;
+  
+
+}
+</style>
+ </head>  
+<!--############################# STYLING ENDS ###################-->
+
+
+
+<!--********************** DROPDOWN BUTTON STARTS *****************-->
+  <body>
+ <div class="myBox">
+   {{question.id}}. {{question.question_name}}
+<br>
+{{question.question_text}}
+          
+  </div>
+
+  <div class="container-fluid">
+
+ <!--div id="l">
+  <br><br><br><br>
+      <!-- Dropdown Trigger -->
+    
+ 
+
+ 
+  
+ 
+</div>
+
+
+</script>
+<!--############################# DROPDOWN BUTTON ENDS ###################-->
+
+
+
+<!--************************************* FILE UPLOAD STARTS *******************************-->
+<div id="file">
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>File</span>
+        <input type="file" value = "FILE" name = "doc" id = "doc">
+        
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+  </div>
+
+<!--###################################### FILE UPLOAD ENDS #########################-->
+
+
+<!--************************************* BUTTON STARTS ******************************-->
+ 
+  <div id="up">
+  <form action="result" id="formid" method="POST" enctype="multipart/form-data" >{% csrf_token %}
+<div id="sub">
+	
+  <input class="btn waves-effect waves-light btn" id ="submit" type="submit" name="flag" value="SUBMIT" style="background-color:#008080;color:white">
+</div>
+
+<div id="deb">
+<br><br><br><br>
+   <input class="btn waves-effect waves-light" id="loadbuffer" type="submit" name="flag" value="LOAD & BUFFER" style="background-color:#008080;color:white">
+   </div>
+<div id="c">
+<br><br><br><br>
+   <input class="btn waves-effect waves-light" id="save" type="submit" name="flag" value="SAVE" style="background-color:#008080;color:white">
+   </div>
+
+   <div id="r">
+<br><br><br><br>
+   <input class="btn waves-effect waves-light" id="compile" type="submit" name="flag" value="COMPILE" style="background-color:#008080;color:white">
+   </div>
+   <div id="s">
+   <br><br><br><br>
+   <input class="btn waves-effect waves-light" id="run" type="submit" name="flag" value="RUN" style="background-color:#008080;color:white">
+   </div>
+   <p id = "demo"></p>
+</div>
+
+<div id="radio1">
+    <p>
+      <input class="with-gap" type="radio"  name="status" value="0" checked id="test1" onclick="blah();"  />
+      <label for="test1"style="color:black"><strong>STANDARD INPUT</strong></label>
+      
+      <input class="with-gap" name="status" value="1" type="radio" id="test2" onclick="show();" />
+      <label for="test2"style="color:black"><strong>CUSTOM INPUT</strong> </label>
+    </p>
+    <!--<p>
+      <input class="with-gap" name="status" value="1" type="radio" id="test2" onclick="show();" />
+      <label for="test2"style="color:black"><strong>CUSTOM INPUT</strong> </label>
+    </p>-->
+    </div>
+    <p id="ipp" style="visibility:hidden"><strong>INPUT</strong></p>
+  <textarea  id="ip2" rows="21" cols="80" name = "custom">
+      
+    </textarea></div>
+
+  <p><strong>OUTPUT</strong></p>
+  <p class="ip" ></p>
+      
+    </textarea></div>
+
+<!--################################# BUTTON ENDS ############################-->
+
+
+ <!--************************************ ACE EDITOR STARTS ******************************-->
+
+ <div id="lan">
+ 	<input type='hidden' id='user_code' name='user_code'>
+    <p>
+      <input class="with-gap" class="actve" type="radio"  name="language" value="c" checked id="R1"   />
+      <label for="R1"style="color:black"><strong>C</strong></label>
+      
+       <input class="with-gap" class="active" name="language" value="cpp" type="radio" id="R2"  />
+      <label for="R2"style="color:black"><strong>C++</strong> </label>
+       
+    </p>
+
+    
+    
+
+  
+     
+    </div>
+
+
+  
+  <div id="editor" >
+
+</div>
+ </form> 
+
+
+<!--<script>
+var editor = ace.edit("editor");
+editor.getSession().setMode("ace/mode/c_cpp");
+editor.setTheme("ace/theme/clouds_midnight");
+
+</script>-->
+<script src="{% static "ace-builds-master/src-min/ace.js" %}" type="text/javascript" charset="utf-8"></script>
+<script>
+ var editor = ace.edit("editor");
+editor.getSession().setMode("ace/mode/c_cpp");
+editor.setTheme("ace/theme/"+this.props.name);
+</script>
+<script type="text/javascript">
+var editor = ace.edit("editor");
+editor.getSession().setMode("ace/mode/c_cpp");
+  
+
+  function btnclk(){
+    editor.setTheme("ace/theme/twilight");
+    }
+    function btnw(){
+    editor.setTheme("ace/theme/clouds");
+    }
+   
+</script>
+
+<script>
+function blah()
+{
+  document.getElementById("test1").onClick(document.getElementById("ip2").style.display="none");
+  document.getElementById("test1").onClick(document.getElementById("ipp").style.display="none");
+
+}
+function show(){
+  document.getElementById("test2").onClick(document.getElementById("ip2").style.display="block");
+  document.getElementById("test2").onClick(document.getElementById("ipp").style.visibility="visible");
+}
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js"></script>
+<script src="{% static "js/jquery-2.2.1.min.js" %}" ></script>
+
+
+</body>
+
+<!--############################# ACE EDITOR ENDS ###################-->
+
+<!--****************************** AJAX CODE*********************-->
+<script>
+$(document).ready(function(){
+     function ajaxSubmitForm(button,form,type,datatype){
+      //var code = form.find("input[name='user_code']").val(),
+      var x=(editor.getSession().getValue());
+        console.log(x);
+        var elem = document.getElementById("user_code");
+        elem.value = x;
+      var lang = form.find("input[name='language']").val(),
+          stats = form.find("input[name='status']").val(),
+          custominput = form.find("input[name='custom']").val(),
+          csrf = form.find("input[name='csrfmiddlewaretoken']").val(),
+          formAction = form.attr('action'),
+          formData = new FormData(form[0]);
+         // console.log(formData);
+            console.log(datatype);
+          formData.append('flag',type);
+          console.log(formData);  
+          return $.ajax({
+                type: "POST",
+                dataType : datatype,
+                url: formAction,
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                timeout: 20000
+            });
+    }
+
+    $("#compile").on('click', function(){
+      var button = $(this),
+          //type = $(button).data('type'),
+         // type = $(button).data
+         type = "compile",
+          form = $(button).closest('form'),
+          datatype = "text",
+          submitRequest = ajaxSubmitForm(button,form,type,datatype);
+            console.log(type);
+          submitRequest.done(function(msg){
+            console.log("all done...");
+            console.log(msg);
+            document.getElementById("demo").innerHTML = msg;
+          }).fail(function(){
+            console.log("Something went wrong...");
+          });
+    });
+
+    $("#save").on('click', function(){
+      var button = $(this),
+         // type = $(button).data('type'),
+          var x = (editor.getSession.getValue());
+		 var elem = document.getElementById("user_code");
+		 elem.value = x;
+          form = $(button).closest('form'),
+          type = "save",
+          datatype = "text",
+          submitRequest = ajaxSubmitForm(button,form,type,datatype);
+            
+          submitRequest.done(function(msg){
+            console.log("all done...");
+            console.log(msg);
+            document.getElementById("demo").innerHTML = msg;
+          }).fail(function(){
+            console.log("Something went wrong...");
+          });
+    });
+
+    $("#run").on('click', function(){
+      var button = $(this),
+         // type = $(button).data('type'),
+          form = $(button).closest('form'),
+          type = "run",
+          datatype = "text",
+          submitRequest = ajaxSubmitForm(button,form,type,datatype);
+            
+          submitRequest.done(function(msg){
+            console.log("all done...");
+            console.log(msg);
+            document.getElementById("demo").innerHTML = msg;
+          }).fail(function(){
+            console.log("Something went wrong...");
+          });
+    });
+
+    $("#submit").on('click', function(){
+      var button = $(this),
+        //  type = $(button).data('type'),
+          form = $(button).closest('form'),
+          type = "submit",
+          datatype = "html",
+          submitRequest = ajaxSubmitForm(button,form,type,datatype);
+            
+
+          submitRequest.done(function(msg){
+            console.log("all done...");
+            console.log(msg);
+            document.getElementById("demo").innerHTML = msg;
+         }).fail(function(){
+            console.log("Something went wrong...");
+          });
+    });
+    
+    $("#loadbuffer").on('click', function(){
+      var button = $(this),
+        //  type = $(button).data('type'),
+          form = $(button).closest('form'),
+          type = "loadbuffer",
+          datatype = "text",
+          submitRequest = ajaxSubmitForm(button,form,type,datatype);
+            
+
+          submitRequest.done(function(msg){
+            console.log("all done...");
+            console.log(msg);
+            document.getElementById("editor").innerHTML = msg;
+         }).fail(function(){
+            console.log("Something went wrong...");
+          });
+    });
+  });
+
+
+
+</script>
+
+<!--***************************** END OF AJAX script****************-->
+
+
+<!--***************************** FOOTER ***************************-->
+<br><b><br><br><br><br>
+<style type="text/css">
+  .footer1 {
+   position:relative;
+   bottom:0;
+   padding-top: 2px;
+   padding-left: 70px;
+   padding-right: 50px;
+   width:100%;
+   height: 5%;
+   background:#009688 ;
+font-family: myFirstFont;
+}
+</style>
+  <footer>
+  <br>
+      <div class="footer1">
+   <center style="color:white">Copyright © NCC PISB,2016</center>
+ 
+  </div>
+</footer>
+ </html>
+    
+<!--############################# FOOTER ENDS ###################-->

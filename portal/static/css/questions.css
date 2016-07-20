@@ -1,0 +1,45 @@
+.textArea {
+	width: 70%;
+	height: 420px;
+	margin-top: 20px;
+	position: center;
+	margin-left: 5px;
+}
+.textAreaOptions {
+	margin-left: 30px;
+	margin-top: 30px;
+	margin-bottom: 10px;
+	vertical-align: middle;
+}
+.navbar_link {
+	font-size: 20px;
+}
+.navbar-brand {
+	font-size: 30px;
+	margin-left: 10px;
+}
+.footer1 {
+  height: 30px;
+ position:relative;
+ bottom: 0;
+width: 100%;
+ margin-top: 40px;
+  background-color: #000000;
+  background: black; 
+}
+.btn {
+	width: 30%;
+	height: 40px;
+	margin-bottom: 30px;
+	margin-top:15px;
+}
+
+.optionRadio {
+	vertical-align: middle;
+	margin-bottom: 10px;
+}
+.options {
+	position: relative;
+	display: block;
+	vertical-align: center;
+}

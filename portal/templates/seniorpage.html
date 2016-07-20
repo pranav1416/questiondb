@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Questions Page</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/questions.css" %}" rel="stylesheet">
+    <link href="{% static "css/seniorpg.css" %}" rel="stylesheet">
+<script type="text/javascript">
+function getVal()
+{
+	var x={{question.id}};
+	var y=document.getElementById("hidden_field");
+	y.value=x;
+}
+
+
+function checkbox_validate()
+{
+    var p=document.getElementById("chkbox_jr");
+    var q=document.getElementById("chkbox_sr");
+    var a=document.getElementById("checkbox_jr_hidden");
+    var b=document.getElementById("checkbox_sr_hidden");
+    a.value=0;
+    b.value=0;
+    console.log(a.value)
+    if(p.checked==1)
+    {
+        
+        a.value=1;
+        console.log(a.value);
+    }
+    if(q.checked==1)
+        b.value=1;
+}
+</script>
+    <!-- Custom CSS -->
+    <style>
+    body {
+        padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    }
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body onload="getVal()">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle">
+                </button>
+                <p class="navbar-brand" >Credenz Clash'16</p>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a class="navbar_link" href="senior_question">Question</a>
+                    </li>
+                    <li>
+                        <a class="navbar_link" href="leaderboard_senior">Leaderboard</a>
+                    </li>
+                    <li>
+                        <a class="navbar_link" href="log_out">Logout</a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-8">
+                <label id="user_name" class="uname">{{question.user.username}}</label>
+                <br>
+                <label id="q_no" class="q_number" >{{question.id}}</label>
+                <br>
+        <textarea class="textArea" placeholder="Paste Your Question here!">{{question.question_text}}</textarea><br>
+        <div class="options">A.<textarea class="textAreaOptions" placeholder="Option A">{{question.option_a}}</textarea><br></div>
+        <div class="options">B.<textarea class="textAreaOptions" placeholder="Option B">{{question.option_b}}</textarea><br></div>
+        <div class="options">C.<textarea class="textAreaOptions" placeholder="Option C">{{question.option_c}}</textarea><br></div>
+        <div class="options">D.<textarea class="textAreaOptions" placeholder="Option D">{{question.option_d}}</textarea><br></div>
+        <label>{{question.correct_option}}</label>
+        
+</div>
+
+            <div class="col-sm-4">
+            <div class="jump">
+            <form method="POST" action = "go_question">
+            {% csrf_token %}
+                <input type="text" name = "qid"/><br>
+                <button type="submit" class="btn btn-primary btn-block btn-medium" id="go_button">Jump On Question</button>
+            </form>
+            </div> 
+
+            <div class="cb">
+            <form method="POST" action="next_question">
+            {% csrf_token %}
+                 <input type="checkbox"  id="chkbox_jr" /> Junior Upvote
+                <input type="checkbox"  id="chkbox_sr"/> Senior Upvote
+ <input type="hidden" id="hidden_field" value="" name="qid" />
+ <input type="hidden" id="checkbox_sr_hidden" value="" name="upvotes_senior" />
+ <input type="hidden" id="checkbox_jr_hidden" value="" name="upvotes_junior" /> <!-- ..............................HIDDEN TEXT FIELD...................................................... --> 
+                <button type="submit" class="btn btn-primary btn-block btn-medium" onclick="checkbox_validate()">NEXT</button>
+            </div> 
+            </div>
+
+
+
+
+
+
+            </div>   
+            <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+<div class="footer1">
+        <p align="center" style="color:white">Copyright Credenz Clash, PICT IEEE Student Branch, 2016</p> 
+            
+        </div>
+    <!-- jQuery Version 1.11.1 -->
+    <script src="{% static "js/jquery.js" %}" ></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static "js/bootstrap.min.js" %}" ></script>
+
+</body>
+
+</html>
